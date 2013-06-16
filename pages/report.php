@@ -96,31 +96,37 @@ border-top:1px solid grey;
 border-bottom:1px solid grey;
 }
 .info{
-	width:220px;
+    width:220px;
 }
 .name{
-	font-size:56px;
+    font-size:56px;
+}
+.comment{
+    font-size:40px;
+    font-style:italic;
 }
 .cm, .degree{
-width:30px;
+    width:30px;
+    font-size:30px;
 }
 .verteiler1{
 width:180px;
 height:90px;
-border-left:2px solid #E6E6FA;
-border-right:1px dotted #E6E6FA;
+border-left:3px solid #E6E6FA;
+border-right:2px dotted #E6E6FA;
 }
 .verteiler2{
 width:180px;
 height:90px;
-border-right:2px solid #E6E6FA;
+border-right:3px solid #E6E6FA;
 }
 		</style><table>';
 			}
 
 			$html.= '<tr>
 				<td class="info">
-					<span class="name">'.$row['name'].'</span><br/>
+					<span class="name">'.htmlspecialchars($row['name']).'</span><br/>
+                    <span class="comment">'.htmlspecialchars($row['comment']).'</span><br/>
 					<span class="degree">'.$row['degree'].'</span>
 					<span class="cm">'.$row['cm'].'</span>
 				</td>

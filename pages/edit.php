@@ -1,35 +1,38 @@
 <?php
 
-if (isPost('name', 'cm', 'degree', 'team')) {
-	$ret = $db->insertRow('verteiler', array(
-		'name' => $_POST['name'],
-		'team' => $_POST['team'],
-		'degree' => $_POST['degree'],
-		'cm' => $_POST['cm'],
-	));
+if (isPost('name', 'cm', 'degree', 'team', 'comment')) {
+    $ret = $db->insertRow('verteiler', array(
+        'name' => $_POST['name'],
+        'team' => $_POST['team'],
+        'comment' => $_POST['comment'],
+        'degree' => $_POST['degree'],
+        'cm' => $_POST['cm'],
+    ));
 
-	if ($ret !== false) {
-		header('Location: ?succes=ok&page='.$_POST['team']);
-		ob_clean();
-		exit();
-	}
+    if ($ret !== false) {
+        header('Location: ?succes=ok&page='.$_POST['team']);
+        ob_clean();
+        exit();
+    }
 }
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-  $row = $db->getFirstRow("
-    SELECT *
-    FROM `verteiler`
-    WHERE `id` = '".$db->escape($_GET['id'])."'
-    LIMIT 1;");
-  if ($row) {
-    echo
+    $row = $db->getFirstRow("
+        SELECT *
+        FROM `verteiler`
+        WHERE `id` = '".$db->escape($_GET['id'])."'
+        LIMIT 1;");
+
+    if ($row) {
+        echo
       '<div style="display:none;">',
         '<span id="oldDegree">',$row['degree'],'</span>',
         '<span id="oldCm">',$row['cm'],'</span>',
-        '<span id="oldName">',$row['name'],'</span>',
-        '<span id="oldTeam">',$row['team'],'</span>',
+        '<span id="oldName">',htmlspecialchars($row['name']),'</span>',
+        '<span id="oldTeam">',htmlspecialchars($row['team']),'</span>',
+        '<span id="oldComment">',htmlspecialchars($row['comment']),'</span>',
       '</div>';
-  }
+    }
 }
 
 ?>
@@ -62,6 +65,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 			<option value="women">Frauen</option>
 		</select></td></tr>
 		<tr><th>Name:</th><td><input type="text" name="name"/></td></tr>
+		<tr><th>Kommentar:</th><td><input type="text" name="comment"/></td></tr>
 		</table>
 		<input type="hidden" id="degree-h" value="0" name="degree"/>
 		<input type="hidden" id="cm-h" value="0" name="cm"/>

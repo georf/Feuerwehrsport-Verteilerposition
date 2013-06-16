@@ -22,7 +22,7 @@ echo '<table id="list">';
 echo '<tr class="head"><td></td><td></td><td></td><th>Bahnmitte</th></tr>';
 foreach ($rows as $row) {
 	echo '<tr>
-		<td class="name"><span class="realname">',$row['name'],'</span> <a href="?page=edit&amp;id='.$row['id'].'"><img src="b_edit.png" alt="" title="Bearbeiten"/></a><br/><span class="date">'.date('d.m.Y H:i', strtotime($row['set'])).'</span></td>
+		<td class="name"><span class="realname">',htmlspecialchars($row['name']),'</span> <a href="?page=edit&amp;id='.$row['id'].'"><img src="b_edit.png" alt="" title="Bearbeiten"/></a><br/><span class="date">'.date('d.m.Y H:i', strtotime($row['set'])).'</span><br/><span class="comment">'.htmlspecialchars($row['comment']).'</span></td>
 		<td class="degree">',$row['degree'],'</td>
 		<td class="cm">',$row['cm'],'</td>
 		<td class="verteiler"></td>

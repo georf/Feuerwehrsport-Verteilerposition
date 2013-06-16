@@ -36,6 +36,7 @@ $(function() {
       meters = cm_start + parseInt($('#oldCm').text());
       $('select[name="team"]').val($('#oldTeam').text());
       $('input[name="name"]').val($('#oldName').text());
+      $('input[name="comment"]').val($('#oldComment').text());
     }
 
 
